@@ -3,7 +3,7 @@ import numpy as np
 from astropy import units as u
 from matplotlib import pyplot as plt
 from pprint import pprint
-import common_tools as ct
+from . import common_tools as ct
 
 
 class Mission:
@@ -75,7 +75,7 @@ superbit.throughputs = np.zeros((7, 791))
 
 for i in range(len(superbit.bands)):
     superbit.throughputs[i, :] = np.loadtxt(
-        "superbit_throughput/" + superbit.bands[i] + ".csv", delimiter=',')
+        "../data/superbit_throughput/" + superbit.bands[i] + ".csv", delimiter=',')
 
 
 # Predicted PSF performance
@@ -109,7 +109,7 @@ gigabit.throughputs = np.zeros((7, 791))
 
 for i in range(len(gigabit.bands)):
     gigabit.throughputs[i, :] = np.loadtxt(
-        "superbit_throughput/" + gigabit.bands[i] + ".csv", delimiter=',')
+        "../data/superbit_throughput/" + gigabit.bands[i] + ".csv", delimiter=',')
 
 gigabit.psf = np.array(np.sqrt(
     ct.get_psf(gigabit.lc*u.nm, gigabit.D*u.m)**2+gigabit.jitter**2), dtype=np.int32)

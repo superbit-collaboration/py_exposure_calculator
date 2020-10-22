@@ -2,8 +2,8 @@
 import numpy as np
 from astropy import units as u
 from astropy import constants as const
-import converters as convert
-import common_tools as ct
+from . import converters as convert
+from . import common_tools as ct
 
 
 def get_mag_from_SNR_slow(
