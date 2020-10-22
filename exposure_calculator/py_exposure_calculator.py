@@ -19,9 +19,7 @@ def get_mag_from_SNR_slow(
     per_pixel=False,
     psf_fwhm=None
 ):
-    """ 
-    Slow method to determine the highest magnitude the mission can get to given an SNR cut 
-    """
+
     pts = []
     for mag in mags:
         pts.append(get_SNR_from_mag(mission, band, mag,
@@ -81,7 +79,7 @@ def get_SNR_from_mag(
                                    mission.pixel_scale)**2  # 3*sigma pixels wide
 
             # Calculate number of electrons per wavelenght contribution from background
-            background_flux_density = convert.convert_MAGAB_to_flux_photons(
+            background_flux_density = convert.MAGAB_to_photons(
                 mag_background[i], lam[i]
             )  # assumes flat background SED
 
@@ -93,7 +91,7 @@ def get_SNR_from_mag(
             n_background = background_electrons + n_background
 
             # Calculate number of electrons per wavelength contribution from sources
-            source_flux_density = convert.convert_MAGAB_to_flux_photons(
+            source_flux_density = convert.MAGAB_to_photons(
                 mag_source[i], lam[i]
             )
 
