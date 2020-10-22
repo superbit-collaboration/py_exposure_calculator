@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from pprint import pprint
 from . import common_tools as ct
 
-
+# TODO: write yaml reader
 class Mission:
     """Struct like class to handle mission data neatly"""
 

@@ -1,0 +1,26 @@
+
+# Physical attributes
+######################
+
+# Aperture diameter in meters
+D : 0.5   
+
+#fraction of aperture that is obscured
+obscuration: 0.384 
+
+# System jitter as 1 sigma in milli arc seconds
+jitter: 50 
+
+# pixel scale in milli arcseconds
+pixel_scale: 206
+
+# Bands
+#######
+
+bands: ['u', 'b', 'g', 'r', 'i', 'lum', 'ha']
+
+llo: [300, 350, 475, 550, 700, 375]
+
+lhi: [400, 500, 550, 800, 1100, 700]
+
+throughputs: "~/superbit/superbit_code/py_exposure_calculator/data/superbit_throughput/"
