@@ -79,7 +79,7 @@ def get_SNR_from_mag(
                                    mission.pixel_scale)**2  # 3*sigma pixels wide
 
             # Calculate number of electrons per wavelenght contribution from background
-            background_flux_density = convert.MAGAB_to_photons(
+            background_flux_density = convert.magab_to_photons(
                 mag_background[i], lam[i]
             )  # assumes flat background SED
 
@@ -91,7 +91,7 @@ def get_SNR_from_mag(
             n_background = background_electrons + n_background
 
             # Calculate number of electrons per wavelength contribution from sources
-            source_flux_density = convert.MAGAB_to_photons(
+            source_flux_density = convert.magab_to_photons(
                 mag_source[i], lam[i]
             )
 

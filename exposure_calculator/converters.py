@@ -2,7 +2,7 @@
 from astropy import units as u
 
 
-def MAGAB_to_photons(magab, central_wavelength):
+def magab_to_photons(magab, central_wavelength):
     """Converts magAB flux density to photons/nm/s/m^2 at a given wavelength
 
     Args:
@@ -20,7 +20,7 @@ def MAGAB_to_photons(magab, central_wavelength):
     return g_nu.value  # photons/nm/s/m^2
 
 
-def Jansky_to_photons(jy, central_wavelength):
+def jansky_to_photons(jansky, central_wavelength):
     """Converts Janskys to photons/nm/s/m^2 at a given wavelength
 
     Args:
@@ -30,7 +30,7 @@ def Jansky_to_photons(jy, central_wavelength):
     Returns:
         float: value of flux density in photons/nm/s/m^2
     """
-    f_nu = jy * u.Jansky
+    f_nu = jansky * u.Jansky
     g_nu = f_nu.to(
         u.photon / u.m ** 2 / u.s / u.nm,
         equivalencies=u.spectral_density(central_wavelength * u.nm),
@@ -38,7 +38,7 @@ def Jansky_to_photons(jy, central_wavelength):
     return g_nu.value  # photons/nm/s/m^2
 
 
-def photons_to_MAGAB(photons_per_second, central_wavelength):
+def photons_to_magab(photons_per_second, central_wavelength):
     """Converts photon flux density from photons/nm/s/m^2 to AB magnitude at a given wavelength
 
     Args:
@@ -55,8 +55,8 @@ def photons_to_MAGAB(photons_per_second, central_wavelength):
     return f_nu.value  # mag AB
 
 
-def photons_to_Jansky(photons_per_second, central_wavelength):
-    """[summary]
+def photons_to_jansky(photons_per_second, central_wavelength):
+    """Converts photons/nm/s/m^2 values to magAB at a given wavelength
 
     Args:
         photons_per_second (float): value of photon flux density in photons/nm/s/m^2
@@ -65,7 +65,7 @@ def photons_to_Jansky(photons_per_second, central_wavelength):
     Returns:
         float: value of flux density in Jansky
     """
-    """Converts photons/nm/s/m^2 values to magAB at a given wavelength"""
+
     g_nu = photons_per_second * u.photon / u.m ** 2 / u.s / u.nm
     f_nu = g_nu.to(
         u.Jansky, equivalencies=u.spectral_density(central_wavelength * u.nm)
