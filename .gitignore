@@ -3,3 +3,8 @@ personal/
 *ipynb
 .*
 __*
+*.pyc
+*.pyo
+build/
+dist/
+*egg*
