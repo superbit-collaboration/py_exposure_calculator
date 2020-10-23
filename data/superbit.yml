@@ -1,15 +1,14 @@
-
 # Physical attributes
 ######################
 
 # Aperture diameter in meters
-D : 0.5   
+D: 0.5
 
 #fraction of aperture that is obscured
-obscuration: 0.384 
+obscuration: 0.384
 
-# System jitter as 1 sigma in milli arc seconds
-jitter: 50 
+# System jitter fwhm in milli arc seconds, if the psf will be provided explictily set jitter to 0
+jitter: 118
 
 # pixel scale in milli arcseconds
 pixel_scale: 206
@@ -17,10 +16,29 @@ pixel_scale: 206
 # Bands
 #######
 
-bands: ['u', 'b', 'g', 'r', 'i', 'lum', 'ha']
+# Names of the bands. Note thoughput file of a particula band should follow the following convention [name].csv
+bands: ["u", "b", "g", "r", "i", "lum", "ha"]
 
-llo: [300, 350, 475, 550, 700, 375]
+# low and high cut off of the bands wavelength in nanometers
+llo: [300, 350, 475, 550, 700, 375, 642]
+lhi: [400, 500, 550, 800, 1100, 700, 667]
 
-lhi: [400, 500, 550, 800, 1100, 700]
+# fwhm of psf in milliarcseconds for every band. If psfs = 0 then the system will be treated as diffraction limited
+psfs: 0
 
-throughputs: "~/superbit/superbit_code/py_exposure_calculator/data/superbit_throughput/"
+# Option 1: Path to directory containing two column csv file in the following format [wavelength, throughput]
+# Option 2: Provide directory containing one column csv file with the througput of each band defined over the missions bandwidth (one throughput entry pernm)
+# Option 3: Provide
+option: 2
+
+# path to folder containing throughput csv files with the name of the band
+csv_path: "~/superbit/superbit_code/py_exposure_calculator/data/superbit_throughput/"
+
+# For option 3 insert a float value here
+throughputs:
+
+
+# Detector
+##########
+
+# this will be used when detector class is completed
