@@ -1,36 +1,44 @@
 # Imports
 import numpy as np
+import yaml
 from astropy import units as u
 from matplotlib import pyplot as plt
 from pprint import pprint
 from . import common_tools as ct
 
-# TODO: write yaml reader
+
 class Mission:
     """Struct like class to handle mission data neatly"""
 
-    def __init__(self, detector=None):
+    def __init__(self, path=None, detector=None):
 
-        # Physical propertoes
-        self.D = None  # aperture diamater
-        self.obscuration = None  # percentage of the aperture obsecured by the obscuration
-        self.pixel_scale = None  # milliarcseconds
-        self.jitter = 0  # 1 sigma pointing jitter in milliarcseconds
+        if path is None:
+            # Physical propertoes
+            self.D = None  # aperture diamater
+            self.obscuration = None  # percentage of the aperture obsecured by the obscuration
+            self.pixel_scale = None  # milliarcseconds
+            self.jitter = 0  # 1 sigma pointing jitter in milliarcseconds
 
-        # Mission bandpass
-        self.bands = np.array([])  # low end of filter
-        self.llo = np.array([])  # low end of filter
-        self.lhi = np.array([])  # high end of filter
-        self.lc = np.array([])  # filter central wavelength
+            # Mission bandpass
+            self.bands = np.array([])  # low end of filter
+            self.llo = np.array([])  # low end of filter
+            self.lhi = np.array([])  # high end of filter
+            self.lc = np.array([])  # filter central wavelength
 
-        # a range that spans the sensitivty of the mission
-        self.wavelengths = np.array([])
-        self.throughputs = np.array([])  # throughput at every wavelength
+            # a range that spans the sensitivty of the mission
+            self.wavelengths = np.array([])
+            self.throughputs = np.array([])  # throughput at every wavelength
 
-        # pretty plot params
-        # jitter convolved psf at the center wavelength of band
-        self.psf = np.array([])
-        self.mag = np.array([])  # 5 sigma snr 1 hour integration per pixel
+            # pretty plot params
+            # jitter convolved psf at the center wavelength of band
+            self.psf = np.array([])
+            self.mag = np.array([])  # 5 sigma snr 1 hour integration per pixel
+
+        else:
+            with open(path) as file:
+                data = yaml.load(file, Loader=yaml.FullLoader)
+
+            self.__dict__ = data
 
     # Missons collecting area
 
